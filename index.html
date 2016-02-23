@@ -1,0 +1,22 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <title>ByteBeat</title>
+</head>
+<body>
+  <h1>ByteBeat</h1>
+  <textarea style="width:95%;" id="a"></textarea>
+  <script src="dist/bytebeat.js"></script>
+  <script>
+   var c = new AudioContext(),
+       b = new ByteBeat(c),
+       a = document.getElementById("a");
+   b.code = "((t >> 10) & 42) * t";
+   b.connect(c.destination);
+   a.value = b.code;
+
+   a.addEventListener("keyup", function(e) {
+     b.code = a.value;
+   });
+  </script>
+</body>
