@@ -11,10 +11,8 @@
    var c = new AudioContext(),
        b = new ByteBeat(c),
        a = document.getElementById("a");
-   b.code = "((t >> 10) & 42) * t";
+   a.value = b.code = "((t<<1)^((t<<1)+(t>>7)&t>>12))|t>>(4-(1^7&(t>>19)))|t>>7";
    b.connect(c.destination);
-   a.value = b.code;
-
    a.addEventListener("keyup", function(e) {
      b.code = a.value;
    });
